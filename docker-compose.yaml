@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  api:
+    container_name: notifier_api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always
+    env_file:
+    - .env
+    ports:
+    - "${SERVER_PORT}:${SERVER_PORT}"
+    networks:
+    - default
+    depends_on:
+    - rabbit
+  rabbit:
+    container_name: notifier_rabbit
+    image: rabbitmq:3-management
+    restart: always
+    env_file:
+    - .env
+    ports:
+    - "${RABBIT_MQ_PORT}:5672"
+    - "15672:15672"
+    networks:
+    - default
+
+networks:
+  default:
+    driver: bridge
+    
