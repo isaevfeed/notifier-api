@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"isaevfeed/notifier/internal/server"
-	"os"
 
 	"github.com/joho/godotenv"
 )
@@ -13,8 +11,6 @@ func init() {
 }
 
 func main() {
-	host, _ := os.LookupEnv("SERVER_HOST")
-	port, _ := os.LookupEnv("SERVER_PORT")
-	srv := server.New(fmt.Sprintf("%s:%s", host, port))
+	srv := server.New()
 	srv.Start()
 }

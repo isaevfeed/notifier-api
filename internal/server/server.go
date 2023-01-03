@@ -21,8 +21,11 @@ type Server struct {
 	NotifierEmail *notifier.NotifierEmail
 }
 
-func New(addr string) *Server {
-	return &Server{Addr: addr, Router: mux.NewRouter(), NotifierEmail: notifier.New(false)}
+func New() *Server {
+	host, _ := os.LookupEnv("SERVER_HOST")
+	port, _ := os.LookupEnv("SERVER_PORT")
+
+	return &Server{Addr: fmt.Sprintf("%s:%s", host, port), Router: mux.NewRouter(), NotifierEmail: notifier.New(false)}
 }
 
 func (s *Server) Start() {
