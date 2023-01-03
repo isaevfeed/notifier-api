@@ -8,6 +8,10 @@
 
 Запустить воркер: **go run ./cmd/worker/send_email_worker.go** *или* **go build -o worker ./cmd/worker/send_email_worker.go & ./worker**
 
+## Администрирование
+
+Попасть в интерфейс rabbitmq можно по адресу **http(s)://${RABBIT_MQ_HOST}:15672/**
+
 ## Конфигурация
 
 Создаём **.env** файл из **.env.example** и меняем настройки на актуальные
